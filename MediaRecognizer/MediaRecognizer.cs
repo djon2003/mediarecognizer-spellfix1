@@ -31,7 +31,6 @@ namespace com.cyberinternauts.all.MediaRecognizer
                 conn.EnableExtensions(true);
                 conn.LoadExtension(@"SQLite Extensions\spellfix1.dll");
 
-                //FIXME: No entries in MetaTitles for this movie, but there were in the AKAs file
                 var fuzzyQuery = @"SELECT mm.*, fuzzyTitles.distance FROM MetaMovies AS mm,  
 (
 	SELECT mt.MetaMovieId, MIN(fuzzyWords.distance) AS Distance FROM MetaTitles AS mt, 
