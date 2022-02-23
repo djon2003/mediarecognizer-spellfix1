@@ -1,0 +1,20 @@
+﻿********************
+ALL PATHS HAVE TO BE ADJUSTED
+********************
+
+- Ensure to have Windows Linux Subsystem installed
+- Ensure a flavor of Linux is installed
+- Ensure to have Linux development tools installed
+- Clone repo https://github.com/sqlite/sqlite
+- Get the version of SQLite used by EntityFrameworkCore
+	- Microsoft.EntityFrameworkCore.RelationalDatabaseFacadeExtensions.ExecuteSqlRaw(db.Database, "UPDATE MetaMovies SET Title=sqlite_version() WHERE Id= 20684;");
+	- The above line of code shall be adjusted to write somewhere else
+- Change repo to the tag version
+- Download amalgation of SQLite code using https://www.sqlite.org/download.html
+	- Example: https://www.sqlite.org/2021/sqlite-amalgamation-3350500.zip
+- Run following command in WSL Ubuntu in /mnt/d/temp/repos/sqlite/ext/misc:
+	- gcc -I/mnt/d/temp/sqlite-amalgamation-3350500 -g -fPIC -shared spellfix.c -o spellfix.dll
+	==> Did not work, maybe this would be a valid option for Linux distro
+
+- Open "x64 Native Tools Command Prompt for VS 2022"
+- cl.exe "-ID:\temp\sqlite-amalgamation-3350500" d:\temp\repos\sqlite\ext\misc\spellfix.c -link -dll -out:D:\temp\spellfix1.dll
